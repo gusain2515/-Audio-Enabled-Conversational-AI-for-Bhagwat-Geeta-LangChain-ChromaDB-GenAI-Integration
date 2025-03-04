@@ -1,36 +1,32 @@
-# Voice-Enabled Conversational AI with Retrieval-Augmented Generation 
-Overview
-Purpose: Provide context-aware answers using a hybrid approach (pre-defined knowledge + generative AI) with voice interaction.
+# Ask Lord Krishna
 
-Target Audience: Developers, AI enthusiasts, and researchers interested in conversational AI systems.
+Ask Lord Krishna is a Streamlit web application that brings ancient wisdom to modern times. This application allows users to ask questions using either voice or text and receive spiritual advice inspired by the Bhagwat Geeta, all in the melodious voice of Lord Krishna.
 
-Key Technologies:
+## Overview
 
-Python, Hugging Face Transformers, ChromaDB
+The project leverages multiple technologies:
+- **Speech Recognition:** Converts your spoken questions into text.
+- **Contextual Retrieval:** Uses a local ChromaDB index built from the Bhagwat Geeta text to retrieve relevant context.
+- **Generative AI:** Integrates with Google Generative AI (Gemini-2.0 Flash) to generate responses in the voice of Lord Krishna.
+- **Text-to-Speech:** Uses gTTS to convert Krishna's advice into spoken audio.
 
-SpeechRecognition, gTTS, Wikipedia API
+## Features
 
-Models: deepset/roberta-base-squad2, google/flan-t5-large
+- **Audio and Text Input:** Ask your question by recording audio or typing.
+- **Conversational History:** Displays a running history of your conversation with Lord Krishna.
+- **Dynamic Context Retrieval:** Automatically retrieves relevant passages from the Bhagwat Geeta to provide context-aware responses.
+- **Interactive Experience:** Enjoy a seamless interaction that blends ancient wisdom with modern AI capabilities.
 
-✨ Features
-Real-Time Speech-to-Text with microphone input
+## Installation
 
-Retrieval-Augmented Generation (RAG) using ChromaDB vector storage
+### Prerequisites
 
-Fallback Mechanism to FLAN-T5 generative model when context is missing
+- Python 3.7 or higher
+- A valid Google API Key for the Generative AI service
 
-Intent Detection for structured actions (e.g., appointment booking)
+### Dependencies
 
-Conversation History tracking with vector embeddings
+Install the necessary Python packages with:
 
-Text-to-Speech responses with auto-cleanup
-
-graph TD
-    A[Microphone Input] --> B(STT Service)
-    B --> C{Intent Detected?}
-    C -->|Yes| D[Execute Intent]
-    C -->|No| E[RAG Retriever]
-    E --> F{Context Found?}
-    F -->|Yes| G[QA Model Answer]
-    F -->|No| H[Fallback Generator]
-    G/H --> I[TTS Response]
+```bash
+pip install streamlit gtts SpeechRecognition audio_recorder_streamlit langchain chromadb huggingface-hub langchain_google_genai
